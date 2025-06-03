@@ -33,7 +33,7 @@ function Analyzer() {
       const formData = new FormData();
           formData.append('file', file);
 
-          fetch('http://localhost:5000/api/auth/predict', {
+          fetch('https://sdpproject-server.onrender.com/api/auth/predict', {
                     method: 'POST',
                     body: formData
                 })
