@@ -10,6 +10,7 @@ function Navbar() {
 
   function LO(){
     localStorage.removeItem("token")
+    localStorage.removeItem("id")
   }
 
   const navItems = [

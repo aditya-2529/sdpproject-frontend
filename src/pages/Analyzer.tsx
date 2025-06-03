@@ -33,7 +33,8 @@ function Analyzer() {
       const formData = new FormData();
           formData.append('file', file);
 
-          fetch('https://sdpproject-server.onrender.com/api/auth/predict', {
+          // fetch('https://sdpproject-server.onrender.com/api/auth/predict', {
+          fetch('http://localhost:5000/api/auth/predict', {
                     method: 'POST',
                     body: formData
                 })
@@ -98,11 +99,19 @@ function Analyzer() {
       if (ctx && videoRef.current) {
         ctx.drawImage(videoRef.current, 0, 0);
         canvas.toBlob(blob => {
-          const formData = new FormData();
-          const nameFile = Date.now();
+        const formData = new FormData();
+        const nameFile = Date.now();
+        const id = localStorage.getItem("id");
+        const photoUrl = canvas.toDataURL('image/jpeg', 0.8);
+        if(blob || id){
           formData.append('file', blob, nameFile+'.jpg');
+          //   setImage(photoUrl);
+          formData.append('imageName', photoUrl);
+          formData.append('id', id);
+        }
 
-          fetch('http://localhost:5000/api/auth/predict', {
+          // fetch('http://localhost:5000/api/auth/predict', {
+          fetch('https://sdpproject-server.onrender.com/api/auth/predict', {
                     method: 'POST',
                     body: formData
                 })
@@ -119,8 +128,6 @@ function Analyzer() {
                 })
                 .catch(error => console.error('Error:', error));
         }, 'image/jpeg')
-        // const photoUrl = canvas.toDataURL('image/jpeg', 0.8);
-        // setImage(photoUrl);
         stopCamera();
         // processImage(photoUrl);
       }
