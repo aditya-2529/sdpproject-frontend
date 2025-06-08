@@ -40,8 +40,8 @@ function Analyzer() {
           const id = localStorage.getItem("id");
           formData.append('id', id)
 
-          // fetch('https://sdpproject-server.onrender.com/api/auth/predict', {
-          fetch('http://localhost:5000/api/auth/predict', {
+          fetch('https://sdpproject-server.onrender.com/api/auth/predict', {
+          // fetch('http://localhost:5000/api/auth/predict', {
                     method: 'POST',
                     body: formData
                 })
@@ -119,8 +119,8 @@ function Analyzer() {
           formData.append('id', id);
         }
 
-          fetch('http://localhost:5000/api/auth/predict', {
-          // fetch('https://sdpproject-server.onrender.com/api/auth/predict', {
+          // fetch('http://localhost:5000/api/auth/predict', {
+          fetch('https://sdpproject-server.onrender.com/api/auth/predict', {
                     method: 'POST',
                     body: formData
                 })
