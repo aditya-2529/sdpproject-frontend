@@ -32,6 +32,13 @@ function Analyzer() {
     if (file) {
       const formData = new FormData();
           formData.append('file', file);
+          const reader = new FileReader();
+          var s = '';
+          reader.onload = function () {
+              s = reader.result
+          formData.append('imageName',s)
+          const id = localStorage.getItem("id");
+          formData.append('id', id)
 
           // fetch('https://sdpproject-server.onrender.com/api/auth/predict', {
           fetch('http://localhost:5000/api/auth/predict', {
@@ -50,6 +57,8 @@ function Analyzer() {
                     // emotionDisplay.style.display = 'block';
                 })
                 .catch(error => console.error('Error:', error));
+          }
+          reader.readAsDataURL(file);
     }
   };
 
@@ -110,8 +119,8 @@ function Analyzer() {
           formData.append('id', id);
         }
 
-          // fetch('http://localhost:5000/api/auth/predict', {
-          fetch('https://sdpproject-server.onrender.com/api/auth/predict', {
+          fetch('http://localhost:5000/api/auth/predict', {
+          // fetch('https://sdpproject-server.onrender.com/api/auth/predict', {
                     method: 'POST',
                     body: formData
                 })
